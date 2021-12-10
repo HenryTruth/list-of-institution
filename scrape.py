@@ -4,7 +4,7 @@ import json
 
 
 # Url to get the list of instution
-source = requests.get('https://en.wikipedia.org/wiki/List_of_colleges_of_education_in_Nigeria').text
+source = requests.get('https://www.4icu.org/ng/a-z/').text
 soup = BeautifulSoup(source, 'lxml')
 
 
@@ -16,20 +16,16 @@ for i in soup.find_all('td'):
             institution_list.append(i.a.text)
     except:
         pass
-
-
+# print(institution_list)
+# print(institution_list)
 # Loop through the instituion list conver it to a dictionary then add it to ththe list
-result = []
-for i in institution_list:
-    if 'College' in i:
-        ds = {i:i}
-        result.append(ds)
+# result = []
+# for i in institution_list:
+#     print(i)
 
-# print(result)
+# # print(result)
 
-print(json.dumps(result, indent= 2))
-
-
+# print(json.dumps(institution_list))
 # convert the list of dictionary to json and write it to the approprait file
-with open('list_of_college.json','w') as f:
-    json.dump(result, f)
+with open('list_of_univeristy.json','w') as f:
+    json.dump(institution_list, f)
